@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 
 
 function Form({ currentId, setCurrentId}) {
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+    const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null);
 
   const [postData, setPostData] = useState({  title: '', message: '', tags: '', selectedFile: '' });
     const classes = useStyles();

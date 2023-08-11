@@ -42,9 +42,32 @@ export default makeStyles({
     justifyContent: 'space-between',
     margin: '20px',
   },
+  loadingPaper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '20px',
+    borderRadius: '15px',
+    height: '39vh',
+  },
+  
+
+  // on Hover titile 
+
   title: {
     padding: '0 16px',
+    cursor:'pointer',
+    '&:hover': {
+     
+      textDecoration:'underline'
+    },
+    
+
+    transition: 'all 0.5s ease-in-out',
   },
+ 
+ 
+
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',

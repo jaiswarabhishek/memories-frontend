@@ -10,7 +10,9 @@ axios.interceptors.request.use((req) => {
     return req;
 })
 
-export const fetchPosts = () => axios.get(`${baseUrl}/posts`);
+export const fetchPost = (id) => axios.get(`${baseUrl}/posts/post/${id}`);   
+export const fetchPosts = (page) => axios.get(`${baseUrl}/posts?page=${page}`);
+export const fetchPostsBySearch = (searchQuery) => axios.get(`${baseUrl}/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 export const createPost = (newPost) => axios.post(`${baseUrl}/posts`,newPost);
 export const updatePost = (id,updatedPost) => axios.patch(`${baseUrl}/posts/${id}`,updatedPost);
 export const deletePost = (id) => axios.delete(`${baseUrl}/posts/${id}`);

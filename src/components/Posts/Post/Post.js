@@ -1,6 +1,6 @@
 import React from 'react'
 import useStyles from './styles';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography,ButtonBase } from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -9,8 +9,11 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { deletePost ,likePost } from '../../../actions/posts';
 import { useSelector } from 'react-redux';
+import {useNavigate,Link} from 'react-router-dom';
 
 function Post({post , setCurrentId}) {
+
+   const navigate = useNavigate();
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -32,12 +35,14 @@ function Post({post , setCurrentId}) {
     
 
 
+    
 
 
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} style={{borderRadius:'15px' , cursor:'pointer'}} raised elevation={6}>
       <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
+     
       <div className={classes.overlay}>
         <Typography variant="h6">{post.name}</Typography>
         <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
@@ -52,11 +57,14 @@ function Post({post , setCurrentId}) {
       <div className={classes.details}>
       <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
       </div>
-      <Typography className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
-      <CardContent>
+      <Typography  onClick={() => navigate(`/posts/${post._id}`)} className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
+      <CardContent >
       <Typography  variant="body2" color="textSecondary" component="p" >{post.message}</Typography>
 
       </CardContent>
+
+     
+     
       <CardActions className={classes.cardActions}>
         <Button  size="small" disabled={!user?.result} style={{color:"#F11A7B"}} onClick={() => dispatch(likePost(post._id))}>
           <Likes />
@@ -68,6 +76,8 @@ function Post({post , setCurrentId}) {
         </Button>
         )}
       </CardActions>
+
+  
     </Card>
 
   )
